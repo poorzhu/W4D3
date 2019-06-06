@@ -1,5 +1,14 @@
-<h1>New Session</h1>
+<h1>Login!</h1>
 
-<%= render 'form', session: @session %>
-
-<%= link_to 'Back', sessions_path %>
+<form class="session-form" action="<%= session_url %>" method="post">
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    <label for="user_name">Username:
+        <input id="user_name" type="text" name="user[user_name]" value="<%= @user.user_name %>"/>
+    </label>
+    <br>
+    <label for="password">Password:
+        <input id="password" type="password" name="user[password]" value="<%= @user.password %>"/>
+    </label>
+    <br>
+    <input type="submit" value="Login"/>
+</form>

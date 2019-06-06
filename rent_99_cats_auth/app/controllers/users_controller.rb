@@ -15,7 +15,33 @@ class UsersController < ApplicationController
       render :new
     end
   end
+  
+  def show
+    @user = User.find_by(id: params[:id])
+    render :show
+  end
 
+  def edit
+    @user = User.find_by(id: params[:id])
+    render :edit    
+  end
+
+  def update
+    @user = User.find_by(id: params[:id])
+
+    if @user.update_attributes(user_params)
+      redirect_to user_url(@user)
+    else
+      ###Flash
+      render json: @user.errors.full_messages, status: 422
+    end
+  end
+
+  def destroy
+    @user = User.find_by(id: params[:id])
+    @user.destroy
+    redirect_to users_url
+  end
 
   private
 

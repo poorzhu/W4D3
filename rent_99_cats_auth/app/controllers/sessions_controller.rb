@@ -7,8 +7,8 @@ class SessionsController < ApplicationController
 
   def create #logged in
     @user = User.find_by_credentials(
-      user_name: params[:user][:user_name],
-      password: params[:user][:password]
+      params[:user][:user_name],
+      params[:user][:password]
     )
     if @user
       #login
@@ -23,6 +23,5 @@ class SessionsController < ApplicationController
   def destroy #log out
     #log_out!
     redirect_to new_session_url
-
   end
 end
